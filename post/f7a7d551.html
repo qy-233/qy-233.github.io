@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>搜索与图论 | 浅羽</title><meta name="author" content="浅羽"><meta name="copyright" content="浅羽"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="库函数1  memcpy()12定义     void *memcpy(void *str1, const void *str2, size_t n)例子     memcy(backup ,dist, sizeof dist)   str1 – 指向用于存储复制内容的目标数组，类型强制转换为 void* 指针。 str2 – 指向要复制的数据源，类型强制转换为 void* 指针。 n – 要被复">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搜索与图论">
+<meta property="og:url" content="http://qy-233.github.io/post/f7a7d551.html">
+<meta property="og:site_name" content="浅羽">
+<meta property="og:description" content="库函数1  memcpy()12定义     void *memcpy(void *str1, const void *str2, size_t n)例子     memcy(backup ,dist, sizeof dist)   str1 – 指向用于存储复制内容的目标数组，类型强制转换为 void* 指针。 str2 – 指向要复制的数据源，类型强制转换为 void* 指针。 n – 要被复">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-12T09:09:45.000Z">
+<meta property="article:modified_time" content="2022-09-12T09:11:18.000Z">
+<meta property="article:author" content="浅羽">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://qy-233.github.io/post/f7a7d551"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '搜索与图论',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-12 17:11:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">浅羽</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">搜索与图论</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-12T09:09:45.000Z" title="发表于 2022-09-12 17:09:45">2022-09-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-12T09:11:18.000Z" title="更新于 2022-09-12 17:11:18">2022-09-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="搜索与图论"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="库函数"><a href="#库函数" class="headerlink" title="库函数"></a>库函数</h2><h3 id="1-memcpy"><a href="#1-memcpy" class="headerlink" title="1  memcpy()"></a>1  memcpy()</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">定义     void *memcpy(void *str1, const void *str2, size_t n)</span><br><span class="line">例子     memcy(backup ,dist, sizeof dist)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>str1</strong> – 指向用于存储复制内容的目标数组，类型强制转换为 void* 指针。</li>
+<li><strong>str2</strong> – 指向要复制的数据源，类型强制转换为 void* 指针。</li>
+<li><strong>n</strong> – 要被复制的字节数。</li>
+</ul>
+<p>2</p>
+<h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><ol>
+<li>C++ min,max所在头文件 algorithm</li>
+<li></li>
+</ol>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ol>
+<li><p>稠密图是指点:边 &#x3D; n : n ^2 稀疏图是指点:边 &#x3D; n : n</p>
+</li>
+<li><p>无向图是一种特殊的有向图</p>
+</li>
+<li><p>邻接表模板<br>int h[N], e[N], ne[N], idx;</p>
+<p>&#x2F;&#x2F; 添加一条边a-&gt;b<br>void add(int a, int b)<br>{<br>e[idx] &#x3D; b, ne[idx] &#x3D; h[a], h[a] &#x3D; idx ++ ;<br>}</p>
+<p>&#x2F;&#x2F; 初始化<br>idx &#x3D; 0;<br>memset(h, -1, sizeof h);</p>
+</li>
+</ol>
+<h1 id="最短路解法思路"><a href="#最短路解法思路" class="headerlink" title="最短路解法思路"></a><strong><code>最短路解法思路</code></strong></h1><p><img src="https://pic.imgdb.cn/item/631cb14f16f2c2beb1503e4f.jpg"></p>
+<p><img src="https://pic.imgdb.cn/item/631dab9916f2c2beb127a046.jpg"></p>
+<h2 id="1-Dijkstra-算法"><a href="#1-Dijkstra-算法" class="headerlink" title="1.Dijkstra 算法"></a>1.Dijkstra 算法</h2><h3 id="朴素版"><a href="#朴素版" class="headerlink" title="朴素版"></a>朴素版</h3><p>ps <code>用于处理稠密图所以使用邻接矩阵存图</code></p>
+<p>​           算法基础架构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.初始化  </span><br><span class="line">dist[1]=0 ,dist[i]=0x3f3f3f3f;</span><br><span class="line">2 核心</span><br><span class="line">  s是已经确定最短路的点的合集</span><br><span class="line">  for()  i   1-n    //循环n次确定n个点的路径</span><br><span class="line">  t 取出在s集合外距离最近的点</span><br><span class="line">   将t加入s</span><br><span class="line">   用t更新其他点的距离         </span><br></pre></td></tr></table></figure>
+
+<p>ps 在正权最短路问题上如果遇到了重边和自环，因为稠密图情况下使用邻接矩阵存图所以不能全部存入。在构图时只要保留最短的那条便即可。</p>
+<p><code>模板</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">int g[N][N];  // 存储每条边</span><br><span class="line">int dist[N];  // 存储1号点到每个点的最短距离</span><br><span class="line">bool st[N];   // 存储每个点的最短路是否已经确定</span><br><span class="line"></span><br><span class="line">// 求1号点到n号点的最短路，如果不存在则返回-1</span><br><span class="line">int dijkstra()</span><br><span class="line">&#123;</span><br><span class="line">    memset(dist, 0x3f, sizeof dist);</span><br><span class="line">    dist[1] = 0;</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; n - 1; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        int t = -1;     // 在还未确定最短路的点中，寻找距离最小的点</span><br><span class="line">        for (int j = 1; j &lt;= n; j ++ )</span><br><span class="line">            if (!st[j] &amp;&amp; (t == -1 || dist[t] &gt; dist[j]))</span><br><span class="line">                t = j;</span><br><span class="line"></span><br><span class="line">        // 用t更新其他点的距离</span><br><span class="line">        for (int j = 1; j &lt;= n; j ++ )</span><br><span class="line">            dist[j] = min(dist[j], dist[t] + g[t][j]);</span><br><span class="line"></span><br><span class="line">        st[t] = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (dist[n] == 0x3f3f3f3f) return -1;</span><br><span class="line">    return dist[n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="堆优化版"><a href="#堆优化版" class="headerlink" title="堆优化版"></a>堆优化版</h3><p>​     ps 稀疏图所以使用邻接表存图 不必在意重边和自环</p>
+<p>模板</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">时间复杂度 O(mlogn)O(mlogn), nn 表示点数，mm 表示边数</span><br><span class="line">typedef pair&lt;int, int&gt; PII;</span><br><span class="line"></span><br><span class="line">int n;      // 点的数量</span><br><span class="line">int h[N], w[N], e[N], ne[N], idx;       // 邻接表存储所有边</span><br><span class="line">int dist[N];        // 存储所有点到1号点的距离</span><br><span class="line">bool st[N];     // 存储每个点的最短距离是否已确定</span><br><span class="line"></span><br><span class="line">// 求1号点到n号点的最短距离，如果不存在，则返回-1</span><br><span class="line">int dijkstra()</span><br><span class="line">&#123;</span><br><span class="line">    memset(dist, 0x3f, sizeof dist);</span><br><span class="line">    dist[1] = 0;</span><br><span class="line">    priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt;&gt; heap;</span><br><span class="line">    heap.push(&#123;0, 1&#125;);      // first存储距离，second存储节点编号</span><br><span class="line"></span><br><span class="line">    while (heap.size())</span><br><span class="line">    &#123;</span><br><span class="line">        auto t = heap.top();</span><br><span class="line">        heap.pop();</span><br><span class="line"></span><br><span class="line">        int ver = t.second, distance = t.first;</span><br><span class="line"></span><br><span class="line">        if (st[ver]) continue;</span><br><span class="line">        st[ver] = true;</span><br><span class="line"></span><br><span class="line">        for (int i = h[ver]; i != -1; i = ne[i])</span><br><span class="line">        &#123;</span><br><span class="line">            int j = e[i];</span><br><span class="line">            if (dist[j] &gt; distance + w[i])</span><br><span class="line">            &#123;</span><br><span class="line">                dist[j] = distance + w[i];</span><br><span class="line">                heap.push(&#123;dist[j], j&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (dist[n] == 0x3f3f3f3f) return -1;</span><br><span class="line">    return dist[n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-bellman-ford-算法"><a href="#2-bellman-ford-算法" class="headerlink" title="2.bellman-ford 算法"></a>2.bellman-ford 算法</h2><p><code>  bellman-ford算法是求有边数限制的最短路</code>(限制了最短路经过边数的个数)</p>
+<p>​         <code>存储方式</code>    结构体</p>
+   <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a,b,w;<span class="comment">//a到b 权值为w</span></span><br><span class="line">&#125;  edg[M]<span class="comment">//m条边</span></span><br></pre></td></tr></table></figure>
+
+<p>​          <code>算法基础架构</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for n重循环    循环到k次  不超过k条边最短路的距离</span><br><span class="line">  备份上一次更新的结果防止串联  //因为ford的边数限制，为了防止在一步的更新中动用了同一步的数据造成我更新我自己的情况即串                                       联，所以只要备份上一步的数据就可以避免这个情况了</span><br><span class="line">   for 所有边 a，b，w</span><br><span class="line">   </span><br><span class="line">  dist[b]=min(dist [a]+w,dist[b])  //松弛操作</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度 n*m</p>
+<p>模板</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">int n, m;       // n表示点数，m表示边数</span><br><span class="line">int dist[N];        // dist[x]存储1到x的最短路距离</span><br><span class="line"></span><br><span class="line">struct Edge     // 边，a表示出点，b表示入点，w表示边的权重</span><br><span class="line">&#123;</span><br><span class="line">    int a, b, w;</span><br><span class="line">&#125;edges[M];</span><br><span class="line"></span><br><span class="line">// 求1到n的最短路距离，如果无法从1走到n，则返回-1。</span><br><span class="line">int bellman_ford()</span><br><span class="line">&#123;</span><br><span class="line">    memset(dist, 0x3f, sizeof dist);</span><br><span class="line">    dist[1] = 0;</span><br><span class="line"></span><br><span class="line">    // 如果第n次迭代仍然会松弛三角不等式，就说明存在一条长度是n+1的最短路径，由抽屉原理，路径中至少存在两个相同的点，说明图中存在负权回路。</span><br><span class="line">    for (int i = 0; i &lt; n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        for (int j = 0; j &lt; m; j ++ )</span><br><span class="line">        &#123;</span><br><span class="line">            int a = edges[j].a, b = edges[j].b, w = edges[j].w;</span><br><span class="line">            if (dist[b] &gt; dist[a] + w)</span><br><span class="line">                dist[b] = dist[a] + w;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (dist[n] &gt; 0x3f3f3f3f / 2) return -1;</span><br><span class="line">    return dist[n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h2 id="3-spfa（对ford算法的优化）"><a href="#3-spfa（对ford算法的优化）" class="headerlink" title="3.spfa（对ford算法的优化）"></a>3.spfa（对ford算法的优化）</h2><p><code>spfa求最短路时是没有边数限制的，边权可以有负值 使用队列优化 </code></p>
+<p>ps 此算法和dijkstra算法很像</p>
+<p>优化 <em><code>dist[b]=min(dist [a]+w,dist[b])  //松弛操作</code></em></p>
+<p>​                &#x2F;&#x2F;   当我被更新的时候就要拿我去更新别人</p>
+<p><img src="https://pic.imgdb.cn/item/631cc9f616f2c2beb16aaf38.jpg"></p>
+<p>模板</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">int n;      // 总点数</span><br><span class="line">int h[N], w[N], e[N], ne[N], idx;       // 邻接表存储所有边</span><br><span class="line">int dist[N];        // 存储每个点到1号点的最短距离</span><br><span class="line">bool st[N];     // 存储每个点是否在队列中</span><br><span class="line"></span><br><span class="line">// 求1号点到n号点的最短路距离，如果从1号点无法走到n号点则返回-1</span><br><span class="line">int spfa()</span><br><span class="line">&#123;</span><br><span class="line">    memset(dist, 0x3f, sizeof dist);</span><br><span class="line">    dist[1] = 0;</span><br><span class="line"></span><br><span class="line">    queue&lt;int&gt; q;</span><br><span class="line">    q.push(1);</span><br><span class="line">    st[1] = true;</span><br><span class="line"></span><br><span class="line">    while (q.size())</span><br><span class="line">    &#123;</span><br><span class="line">        auto t = q.front();</span><br><span class="line">        q.pop();</span><br><span class="line"></span><br><span class="line">        st[t] = false;</span><br><span class="line"></span><br><span class="line">        for (int i = h[t]; i != -1; i = ne[i])</span><br><span class="line">        &#123;</span><br><span class="line">            int j = e[i];</span><br><span class="line">            if (dist[j] &gt; dist[t] + w[i])</span><br><span class="line">            &#123;</span><br><span class="line">                dist[j] = dist[t] + w[i];</span><br><span class="line">                if (!st[j])     // 如果队列中已存在j，则不需要将j重复插入</span><br><span class="line">                &#123;</span><br><span class="line">                    q.push(j);</span><br><span class="line">                    st[j] = true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (dist[n] == 0x3f3f3f3f) return -1;</span><br><span class="line">    return dist[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="spfa判断负环"><a href="#spfa判断负环" class="headerlink" title="spfa判断负环"></a>spfa判断负环</h3><p>基础原理</p>
+<p><img src="https://pic.imgdb.cn/item/631d9db116f2c2beb118d18c.jpg"></p>
+<p>模板</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">int n;      // 总点数</span><br><span class="line">int h[N], w[N], e[N], ne[N], idx;       // 邻接表存储所有边</span><br><span class="line">int dist[N], cnt[N];        // dist[x]存储1号点到x的最短距离，cnt[x]存储1到x的最短路中经过的点数</span><br><span class="line">bool st[N];     // 存储每个点是否在队列中</span><br><span class="line"></span><br><span class="line">// 如果存在负环，则返回true，否则返回false。</span><br><span class="line">bool spfa()</span><br><span class="line">&#123;</span><br><span class="line">    // 不需要初始化dist数组</span><br><span class="line">    // 原理：如果某条最短路径上有n个点（除了自己），那么加上自己之后一共有n+1个点，由抽屉原理一定有两个点相同，所以存在环。</span><br><span class="line"></span><br><span class="line">    queue&lt;int&gt; q;</span><br><span class="line">    for (int i = 1; i &lt;= n; i ++ )//把所有数都放进去，因为1可能到不了负环</span><br><span class="line">    &#123;</span><br><span class="line">        q.push(i);</span><br><span class="line">        st[i] = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    while (q.size())</span><br><span class="line">    &#123;</span><br><span class="line">        auto t = q.front();</span><br><span class="line">        q.pop();</span><br><span class="line"></span><br><span class="line">        st[t] = false;</span><br><span class="line"></span><br><span class="line">        for (int i = h[t]; i != -1; i = ne[i])</span><br><span class="line">        &#123;</span><br><span class="line">            int j = e[i];</span><br><span class="line">            if (dist[j] &gt; dist[t] + w[i])</span><br><span class="line">            &#123;</span><br><span class="line">                dist[j] = dist[t] + w[i];</span><br><span class="line">                cnt[j] = cnt[t] + 1;</span><br><span class="line">                if (cnt[j] &gt;= n) return true;       // 如果从1号点到x的最短路中包含至少n个点（不包括自己），则说明存在环</span><br><span class="line">                if (!st[j])</span><br><span class="line">                &#123;</span><br><span class="line">                    q.push(j);</span><br><span class="line">                    st[j] = true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Floyed算法"><a href="#4-Floyed算法" class="headerlink" title="4.Floyed算法"></a>4.Floyed算法</h2><p>该算法有于求一个带权有向图(Wighted Directed Graph)的任意两点的最短距离的算法，运用了动态规划的思想, 算法的时间复杂度为O(V^3)，空间复杂度O(V^2)。</p>
+<p>基础原理+模板</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">邻接矩阵存图</span><br><span class="line"></span><br><span class="line">初始化</span><br><span class="line">  for (int i = 1; i &lt;= n; i ++ )</span><br><span class="line">      for (int j = 1; j &lt;= n; j ++ )</span><br><span class="line">          if (i == j) d[i][j] = 0;</span><br><span class="line">          else d[i][j] = INF;</span><br><span class="line"></span><br><span class="line">for(int k=1;k&lt;=n;k++)</span><br><span class="line">    for(int i=1;i&lt;=n;i++)</span><br><span class="line">       for(int j=1;j&lt;=n;j++)</span><br><span class="line">       &#123;</span><br><span class="line">         d[i][j]=min(d[i][j],d[i][k]+d[k][j])</span><br><span class="line">         &#125;</span><br><span class="line">         </span><br><span class="line">    补充解析   动态规划的思想</span><br><span class="line">  假设节点序号是从1到n。</span><br><span class="line">  假设f[0][i][j]是一个n*n的矩阵，第i行第j列代表从i到j的权值，如果i到j有边，那么其值就为ci,j（边ij的权值）。</span><br><span class="line">  如果没有边，那么其值就为无穷大。</span><br><span class="line"></span><br><span class="line">  f[k][i][j]代表（k的取值范围是从1到n），在考虑了从1到k的节点作为中间经过的节点时，从i到j的最短路径的长度。</span><br><span class="line"></span><br><span class="line">  比如，f[1][i][j]就代表了，在考虑了1节点作为中间经过的节点时，从i到j的最短路径的长度。</span><br><span class="line">  分析可知，f[1][i][j]的值无非就是两种情况，而现在需要分析的路径也无非两种情况，i=&gt;j，i=&gt;1=&gt;j：</span><br><span class="line">  【1】f[0][i][j]：i=&gt;j这种路径的长度，小于，i=&gt;1=&gt;j这种路径的长度</span><br><span class="line">  【2】f[0][i][1]+f[0][1][j]：i=&gt;1=&gt;j这种路径的长度，小于，i=&gt;j这种路径的长度</span><br><span class="line">  形式化说明如下：</span><br><span class="line">  f[k][i][j]可以从两种情况转移而来：</span><br><span class="line">  【1】从f[k−1][i][j]转移而来，表示i到j的最短路径不经过k这个节点</span><br><span class="line">  【2】从f[k−1][i][k]+f[k−1][k][j]转移而来，表示i到j的最短路径经过k这个节点</span><br><span class="line"></span><br><span class="line">  总结就是：f[k][i][j]=min(f[k−1][i][j],f[k−1][i][k]+f[k−1][k][j])</span><br><span class="line">  从总结上来看，发现f[k]只可能与f[k−1]有关。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>时间复杂度分析   此题数据n为200   即为 800万小于1000万所以可以在1s内出结果</p>
+<p>​</p>
+<p><img src="https://pic.imgdb.cn/item/631db1e016f2c2beb12dba18.jpg"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://qy-233.github.io">浅羽</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://qy-233.github.io/post/f7a7d551.html">http://qy-233.github.io/post/f7a7d551.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://qy-233.github.io" target="_blank">浅羽</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/4a17b156.html"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hello World</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">浅羽</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%93%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">库函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-memcpy"><span class="toc-number">1.1.</span> <span class="toc-text">1  memcpy()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">头文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">3.</span> <span class="toc-text">基础知识</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E8%A7%A3%E6%B3%95%E6%80%9D%E8%B7%AF"><span class="toc-number"></span> <span class="toc-text">最短路解法思路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dijkstra-%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">1.Dijkstra 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0%E7%89%88"><span class="toc-number">1.1.</span> <span class="toc-text">朴素版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E4%BC%98%E5%8C%96%E7%89%88"><span class="toc-number">1.2.</span> <span class="toc-text">堆优化版</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-bellman-ford-%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">2.bellman-ford 算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-spfa%EF%BC%88%E5%AF%B9ford%E7%AE%97%E6%B3%95%E7%9A%84%E4%BC%98%E5%8C%96%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">3.spfa（对ford算法的优化）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#spfa%E5%88%A4%E6%96%AD%E8%B4%9F%E7%8E%AF"><span class="toc-number">3.1.</span> <span class="toc-text">spfa判断负环</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Floyed%E7%AE%97%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">4.Floyed算法</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/f7a7d551.html" title="搜索与图论"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="搜索与图论"/></a><div class="content"><a class="title" href="/post/f7a7d551.html" title="搜索与图论">搜索与图论</a><time datetime="2022-09-12T09:09:45.000Z" title="发表于 2022-09-12 17:09:45">2022-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/4a17b156.html" title="Hello World"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/post/4a17b156.html" title="Hello World">Hello World</a><time datetime="2022-09-12T08:41:19.650Z" title="发表于 2022-09-12 16:41:19">2022-09-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 浅羽</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
